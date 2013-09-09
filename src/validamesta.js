@@ -24,8 +24,10 @@
       });
     },
     _validate_text: function(el) {
-      if(el.value === "")
+      if("" == el.value) {
+         console.log($(el).css('border'));
          $(el).css('border', '1px solid red');
+      }
     }
   };
 
