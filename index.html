@@ -16,9 +16,17 @@
     <h2>Working Sample</h2>
     <form id="to_validate">
       <div>
-        <label>Primer Input</label>
-        <input type="text" />
+        <label>First Input</label>
+        <input type="text" name="hola" />
+      </div>
+      <div>
+        <label>Second Input*</label>
+        <input type="text" name="skip_valid" data-rule="required" />
+      </div>
+      <div>
+        <input type="submit">
       </div>
     </form>
+    <small>*Required</small>
   </body>
 </html>
