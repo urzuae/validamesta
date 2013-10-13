@@ -14,6 +14,7 @@
   
   validamesta.prototype = {
     init: function(options) {
+      console.log('validating');
       if(this.$target.is('form'))
         this.validateForm();
       else
@@ -25,7 +26,8 @@
       });
     },
     validateInput: function(target) {
-      $(target).attr('data-border', $(target).css('border'));
+      //What I do here is to save the border style of the input for the first time and upon fail place a red border
+      if($(target).attr('data-border') == "") $(target).attr('data-border', $(target).css('border'));
       if(target.value == "") {
         valid = false;
         $(target).css('border', '1px solid red');
