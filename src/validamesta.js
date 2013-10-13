@@ -21,8 +21,11 @@
         this.validateField();
     },
     validateForm: function() {
-      this.$target.find('input').each(function() {
+      that.$target.find('input').each(function() {
         that.validateInput(this);
+      });
+      that.$target.find('textarea').each(function() {
+        that.validateTextArea(this);
       });
     },
     validateInput: function(target) {
@@ -32,6 +35,10 @@
             that._validateText(target);
         }
       }
+    },
+    validateTextArea: function(target) {
+      if($(target).attr('data-rule') == 'required')
+      that._validateText(target);
     },
     _validateText: function(textTarget) {
       if(textTarget.value == "")
