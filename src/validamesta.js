@@ -1,8 +1,16 @@
 ;(function( $, window, document, undefined) {
 
-  var valid = true;
+  // TODO LIST
+  // Iterate over select fields
+  // Iterate over sub-input fields
+
+  /*
+  * Valid will be our global
+  * Setting up deafult styles for invalid fields
+  */
+  var valid = true; //Setting up to true in any case something fails will be set to false
   var defaults = {
-    border: '2px solid #f00'
+    border: '2px solid #f00' //Basic style to set up invalid field
   };
 
   function validamesta(target, options) {
@@ -15,17 +23,28 @@
   
   validamesta.prototype = {
     init: function(options) {
+      // Validating either a complete form or a single form field
+      // this might work even if no form is present
       if(this.$target.is('form'))
-        this.validateForm();
+        this.validateForm(); // Validating complete form
       else
-        this.validateField();
+        this.validateField(); // Validating single field
     },
     validateForm: function() {
+      // For every type of input a special validation must be run
+
+      // Iterating over input tag fields
       that.$target.find('input').each(function() {
         that.validateInput(this);
       });
+      // Iterating over textarea tag fields
       that.$target.find('textarea').each(function() {
         that.validateTextArea(this);
+      });
+      // Still to be implemented
+      // TODO: Iterate over select fields
+      that.$target.find('select').each(function(){
+        that.validateSelect(this);
       });
     },
     validateInput: function(target) {
@@ -37,6 +56,10 @@
       }
     },
     validateTextArea: function(target) {
+      if($(target).attr('data-rule') == 'required')
+      that._validateText(target);
+    },
+    validateSelect: function(target) {
       if($(target).attr('data-rule') == 'required')
       that._validateText(target);
     },
